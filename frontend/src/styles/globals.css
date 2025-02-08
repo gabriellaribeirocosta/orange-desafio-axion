@@ -12,3 +12,7 @@
   font-family: 'Open Sans', sans-serif;
   color: var(--black);
 }
+
+button, input {
+  font-family: 'Open Sans', sans-serif;
+}
