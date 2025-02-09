@@ -1,4 +1,5 @@
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header/Header"
+import styles from './layout.module.css'
 
 export default function RootLayout({
     children,
@@ -8,7 +9,7 @@ export default function RootLayout({
     return (
       <>
         <Header></Header>
-        <main>
+        <main className={styles.main}>
           {children}
         </main>
       </>
