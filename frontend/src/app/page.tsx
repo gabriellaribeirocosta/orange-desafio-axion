@@ -6,15 +6,35 @@ import Input from '@/components/Input/Input'
 import Image from 'next/image';
 import styles from './login.module.css'
 import { useState } from 'react';
+import { login, register } from '@/services/auth';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
   const [registro, setRegistro] = useState(false)
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
 
-  const handleAcessar = () => {
-
+  const handleAcessar = async () => {
+    try {
+      await login(email, password)
+      router.push('/foods')
+    }catch(error) {
+      console.error(error)
+    }
   }
 
-  const handleCadastrar = () => {
+  const handleCriarConta = async () => {
+    try {
+      await register(username, email, password)
+      router.push('/foods')
+    } catch(error) {
+      console.error(error)
+    }
+  }
+
+  const handleFazerCadastro = () => {
     setRegistro(true)
   }
 
@@ -31,8 +51,8 @@ export default function Login() {
           (
           <>
             <div className={styles.inputs}>
-              <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'}></Input>
-              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'}></Input>
+              <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'} value={email} onChange={(e) => setEmail(e.target.value)}></Input>
+              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)}></Input>
               <div>
                 <input type={'checkbox'} id={'mostrarSenha'} name={'mostrarSenha'}></input>
                 <label htmlFor='mostrarSenha'>Mostrar Senha.</label>
@@ -45,7 +65,7 @@ export default function Login() {
               <p>ou</p>
               <div className={styles.line}></div>
             </div>
-            <Button text={'Cadastrar'} onClick={handleCadastrar}></Button>
+            <Button text={'Cadastrar'} onClick={handleFazerCadastro}></Button>
             <div className={styles.links}>
               <a href="#">Termos de uso</a>
               <p>•</p>
@@ -55,11 +75,11 @@ export default function Login() {
         ) : (
           <>
             <div className={styles.inputs}>
-              <Input placeholder={'Username'} label={'Username'}></Input>
-              <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'}></Input>
-              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'}></Input>
+              <Input placeholder={'Username'} label={'Username'} value={username} onChange={(e) => setUsername(e.target.value)}></Input>
+              <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'} value={email} onChange={(e) => setEmail(e.target.value)}></Input>
+              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)}></Input>
             </div>
-            <Button text={'Criar Conta'} onClick={handleAcessar} className={styles.buttonAcessar}></Button>
+            <Button text={'Criar Conta'} onClick={handleCriarConta} className={styles.buttonAcessar}></Button>
             <div className={styles.ouDivider}>
               <div className={styles.line}></div>
               <p>ou</p>

@@ -8,9 +8,11 @@ interface InputProps {
     placeholder: string
     label: string
     icon?: 'email' | 'password'
+    value: string
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function Input({ type = 'text', placeholder, label, icon}:InputProps) {
+export default function Input({ type = 'text', placeholder, label, icon, value, onChange }:InputProps) {
     const getIcon = () => {
         switch(icon){
             case 'email':
@@ -26,7 +28,7 @@ export default function Input({ type = 'text', placeholder, label, icon}:InputPr
       <div>
         <label className={styles.label}>{label}</label>
         <div className={styles.inputContainer}>
-            <input type={type} className={styles.input} placeholder={placeholder}/>
+            <input type={type} className={styles.input} placeholder={placeholder} value={value} onChange={onChange}/>
             {icon && (<div className={styles.icon}><Image alt='icon' src={getIcon()} height={16} width={16}></Image></div>)}
         </div>
       </div>
