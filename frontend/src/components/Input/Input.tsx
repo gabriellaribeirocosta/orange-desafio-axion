@@ -25,8 +25,10 @@ export default function Input({ type = 'text', placeholder, label, icon}:InputPr
     return (
       <div>
         <label className={styles.label}>{label}</label>
-        <input type={type} className={styles.input} placeholder={placeholder}/>
-        {icon && (<div className={styles.icon}><Image alt='icon' src={getIcon()} height={18}></Image></div>)}
+        <div className={styles.inputContainer}>
+            <input type={type} className={styles.input} placeholder={placeholder}/>
+            {icon && (<div className={styles.icon}><Image alt='icon' src={getIcon()} height={16} width={16}></Image></div>)}
+        </div>
       </div>
     );
 }
