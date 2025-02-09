@@ -1,0 +1,23 @@
+.header {
+    background-color: var(--white);
+    display: flex;
+    padding: 1.5rem 15rem;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, .1);
+}
+
+.navLinks {
+    display: flex;
+    gap: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.navLink:hover {
+    font-weight: 700;
+}
+
+.navLink:focus {
+    font-weight: 700;
+}
