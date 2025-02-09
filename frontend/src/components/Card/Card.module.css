@@ -1,0 +1,28 @@
+.card {
+    position: relative;
+    height: 290px;
+    width: 290px;
+}
+
+.gradient {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to top, rgb(0, 0, 0, 0.5) 0%, transparent 20%);
+    z-index: 999;
+}
+
+.image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}
+
+.title {
+    position: absolute;
+    bottom: 1.5rem;
+    text-transform: capitalize;
+    margin-left: 1rem;
+    font-size: 28px;
+    color: var(--white);
+    font-weight: 700;
+}
