@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode'; // Para decodificar o token JWT
+import jwtDecode from 'jwt-decode';
 
 interface User {
   id: string;
@@ -11,8 +11,8 @@ export const isAuthenticated = () => {
   if (!token) return false;
 
   try {
-    const decoded = jwtDecode<User>(token); // Decodifica o token
-    return !!decoded; // Retorna true se o token for válido
+    const decoded = jwtDecode<User>(token);
+    return !!decoded;
   } catch (error) {
     console.error('Token inválido:', error);
     return false;
@@ -24,7 +24,7 @@ export const getUserFromToken = (): User | null => {
   if (!token) return null;
 
   try {
-    const decoded = jwtDecode<User>(token); // Decodifica o token
+    const decoded = jwtDecode<User>(token);
     return decoded;
   } catch (error) {
     console.error('Token inválido:', error);
