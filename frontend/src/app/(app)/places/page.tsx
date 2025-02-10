@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import Collection from '@/interfaces/Collection'
 import Heading from "@/components/Heading/Heading"
 import styles from '../layout.module.css'
+import withAuth from "@/hocs/withAuth";
 
-export default function Places() {
+const Places = () => {
     const [places, setPlaces] = useState([])
 
     useEffect(() => {
@@ -27,3 +28,5 @@ export default function Places() {
       </div>
     );
 }
+
+export default withAuth(Places)
