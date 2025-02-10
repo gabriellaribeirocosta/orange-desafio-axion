@@ -12,7 +12,7 @@ interface User {
 interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
-  isLoading: boolean; // Novo estado para verificação em andamento
+  isLoading: boolean;
   login: (token: string) => void;
   logout: () => void;
 }
@@ -22,9 +22,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // Estado de carregamento
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Verifica se o usuário já está autenticado ao carregar a página
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
@@ -34,11 +33,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(userData);
       }
     }
-    setIsLoading(false); // Finaliza a verificação
+    setIsLoading(false);
   }, []);
 
   const login = (token: string) => {
-    Cookies.set('token', token, { expires: 7 }); // Armazena o token nos cookies
+    Cookies.set('token', token, { expires: 7 });
     const userData = getUserFromToken();
     if (userData) {
       setIsAuthenticated(true);
@@ -47,7 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    Cookies.remove('token'); // Remove o token
+    Cookies.remove('token');
     setIsAuthenticated(false);
     setUser(null);
   };

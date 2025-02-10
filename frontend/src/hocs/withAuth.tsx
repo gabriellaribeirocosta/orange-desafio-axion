@@ -11,7 +11,7 @@ const withAuth = (WrappedComponent: React.ComponentType) => {
 
     useEffect(() => {
       if (!isAuthenticated) {
-        router.push('/'); // Redireciona para a página de login
+        router.push('/');
       }
     }, [isAuthenticated, router]);
 
