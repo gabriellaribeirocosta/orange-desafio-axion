@@ -6,15 +6,16 @@ import { useEffect, useState } from "react";
 import Collection from '@/interfaces/Collection'
 import Heading from "@/components/Heading/Heading";
 import styles from '../layout.module.css'
+import withAuth from "@/hocs/withAuth";
 
-export default function Foods() {
+const Foods = () => {
     const [foods, setFoods] = useState([])
     
     useEffect(() => {
       api.get('/foods')
       .then((res) => setFoods(res.data))
       .catch((error) => console.error(error))
-    }, [])
+    }, []);
 
     return (
       <div className={styles.section}>
@@ -27,3 +28,5 @@ export default function Foods() {
       </div>
     );
 }
+
+export default withAuth(Foods)

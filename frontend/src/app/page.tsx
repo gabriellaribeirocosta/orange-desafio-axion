@@ -5,9 +5,10 @@ import Button from '@/components/Button/Button';
 import Input from '@/components/Input/Input'
 import Image from 'next/image';
 import styles from './login.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { login, register } from '@/services/auth';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function Login() {
   const [registro, setRegistro] = useState(false)
@@ -15,10 +16,22 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
+  const { login: authLogin , isAuthenticated, isLoading } = useAuth()
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push('/foods');
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  if (isLoading || isAuthenticated) {
+    return null;
+  }
 
   const handleAcessar = async () => {
     try {
-      await login(email, password)
+      const data = await login(email, password)
+      authLogin(data.jwt)
       router.push('/foods')
     }catch(error) {
       console.error(error)
