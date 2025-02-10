@@ -9,7 +9,7 @@ import styles from '../layout.module.css'
 
 export default function Foods() {
     const [foods, setFoods] = useState([])
-
+    
     useEffect(() => {
       api.get('/foods')
       .then((res) => setFoods(res.data))
