@@ -54,8 +54,13 @@ export default function Login() {
       toast.error('E-mail inválido')
     } else {
       try {
-        await register(username, email, password)
-        router.push('/foods')
+        const registerSuccess = await register(username, email, password)
+        if(registerSuccess){
+          toast.success('Cadastrado com sucesso! Agora, efetue login')
+          router.push('/foods')
+        }else {
+          toast.error('E-mail e/ou Username já existem')
+        }
       } catch(error) {
         console.error(error)
       }
