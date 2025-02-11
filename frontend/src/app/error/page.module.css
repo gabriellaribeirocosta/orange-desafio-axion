@@ -1,0 +1,33 @@
+.buttonGradient {
+    background-image: linear-gradient(to right, var(--purple), var(--orange));
+    border: solid 1px var(--purple);
+    color: var(--white);
+    transition: 300ms;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 300px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.errorTitle {
+    font-size: 8rem;
+    font-weight: 700;
+}

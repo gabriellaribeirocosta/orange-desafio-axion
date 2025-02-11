@@ -29,7 +29,7 @@
     gap: 1rem;
 }
 
-.buttonAcessar {
+.buttonGradient {
     background-image: linear-gradient(to right, var(--purple), var(--orange));
     border: solid 1px var(--purple);
     color: var(--white);
