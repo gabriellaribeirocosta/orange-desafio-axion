@@ -77,7 +77,7 @@ export default function Login() {
               </div>
             </div>
             <a href="#" className={styles.linkProblemas}>Problemas para acessar sua conta?</a>
-            <Button text={'Acessar'} onClick={handleAcessar} className={styles.buttonAcessar}></Button>
+            <Button text={'Acessar'} onClick={handleAcessar} className={styles.buttonGradient}></Button>
             <div className={styles.ouDivider}>
               <div className={styles.line}></div>
               <p>ou</p>
@@ -97,7 +97,7 @@ export default function Login() {
               <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'} value={email} onChange={(e) => setEmail(e.target.value)}></Input>
               <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)}></Input>
             </div>
-            <Button text={'Criar Conta'} onClick={handleCriarConta} className={styles.buttonAcessar}></Button>
+            <Button text={'Criar Conta'} onClick={handleCriarConta} className={styles.buttonGradient}></Button>
             <div className={styles.ouDivider}>
               <div className={styles.line}></div>
               <p>ou</p>
