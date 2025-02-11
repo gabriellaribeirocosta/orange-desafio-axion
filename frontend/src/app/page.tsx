@@ -1,14 +1,15 @@
 'use client'
-import backgroundImage from '@/assets/bg.jpg'
-import logo from '@/assets/logo.png'
+import backgroundImage from '@/assets/bg.jpg';
+import logo from '@/assets/logo.png';
 import Button from '@/components/Button/Button';
-import Input from '@/components/Input/Input'
+import Input from '@/components/Input/Input';
 import Image from 'next/image';
-import styles from './login.module.css'
+import styles from './login.module.css';
 import { useEffect, useState } from 'react';
 import { login, register } from '@/services/auth';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const [registro, setRegistro] = useState(false)
@@ -30,22 +31,40 @@ export default function Login() {
   }
 
   const handleAcessar = async () => {
-    try {
-      const data = await login(email, password)
-      authLogin(data.jwt)
-      router.push('/foods')
-    }catch(error) {
-      console.error(error)
+    if(!email || !password) {
+      toast.error('Preencha todos os campos')
+    } else if(!validateEmail(email)) {
+      toast.error('E-mail inválido')
+    } else {
+      try {
+        const data = await login(email, password)
+        authLogin(data.jwt)
+        router.push('/foods')
+      }catch(error) {
+        toast.error('E-mail e/ou senha estão incorretos')
+        console.error(error)
+      }
     }
   }
 
   const handleCriarConta = async () => {
-    try {
-      await register(username, email, password)
-      router.push('/foods')
-    } catch(error) {
-      console.error(error)
+    if(!username || !email || !password){
+      toast.error('Preencha todos os campos')
+    } else if (!validateEmail(email)){
+      toast.error('E-mail inválido')
+    } else {
+      try {
+        await register(username, email, password)
+        router.push('/foods')
+      } catch(error) {
+        console.error(error)
+      }
     }
+  }
+
+  const validateEmail = (email:string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
   }
 
   const handleFazerCadastro = () => {
