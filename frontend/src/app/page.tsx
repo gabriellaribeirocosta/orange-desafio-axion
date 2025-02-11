@@ -15,6 +15,7 @@ export default function Login() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const router = useRouter()
   const { login: authLogin , isAuthenticated, isLoading } = useAuth()
 
@@ -55,6 +56,10 @@ export default function Login() {
     setRegistro(false)
   }
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
     <div className={styles.content}>
       <Image src={backgroundImage} className={styles.backgroundImage} alt='desk with computer' width={860}/>
@@ -65,9 +70,9 @@ export default function Login() {
           <>
             <div className={styles.inputs}>
               <Input placeholder={'seunome@email.com'} label={'Email'} icon={'email'} value={email} onChange={(e) => setEmail(e.target.value)}></Input>
-              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={'password'} value={password} onChange={(e) => setPassword(e.target.value)}></Input>
+              <Input placeholder={'Password'} label={'Password'} icon={'password'} type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)}></Input>
               <div>
-                <input type={'checkbox'} id={'mostrarSenha'} name={'mostrarSenha'}></input>
+                <input type={'checkbox'} id={'mostrarSenha'} name={'mostrarSenha'} onChange={toggleShowPassword}></input>
                 <label htmlFor='mostrarSenha'>Mostrar Senha.</label>
               </div>
             </div>
