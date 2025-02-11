@@ -95,7 +95,7 @@ export default function Login() {
                 <label htmlFor='mostrarSenha'>Mostrar Senha.</label>
               </div>
             </div>
-            <a href="#" className={styles.linkProblemas}>Problemas para acessar sua conta?</a>
+            <a href="/error" className={styles.linkProblemas}>Problemas para acessar sua conta?</a>
             <Button text={'Acessar'} onClick={handleAcessar} className={styles.buttonGradient}></Button>
             <div className={styles.ouDivider}>
               <div className={styles.line}></div>
@@ -103,11 +103,6 @@ export default function Login() {
               <div className={styles.line}></div>
             </div>
             <Button text={'Cadastrar'} onClick={handleFazerCadastro}></Button>
-            <div className={styles.links}>
-              <a href="#">Termos de uso</a>
-              <p>•</p>
-              <a href="#">Política de Privacidade</a>
-            </div>
           </>
         ) : (
           <>
@@ -123,12 +118,12 @@ export default function Login() {
               <div className={styles.line}></div>
             </div>
             <Button text={'Fazer Login'} onClick={handleFazerLogin}></Button>
-            <div className={styles.links}>
-              <a href="#">Termos de uso</a>
-              <p>•</p>
-              <a href="#">Política de Privacidade</a>
-            </div>
           </>)}
+          <div className={styles.links}>
+            <a href="/error">Termos de uso</a>
+            <p>•</p>
+            <a href="/error">Política de Privacidade</a>
+          </div>
       </main>
     </div>
   );
